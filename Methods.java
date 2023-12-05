@@ -241,11 +241,30 @@ public class Methods
     
     public void calcAverage()
     {
-        // Variables
-        int myArray[] = {getNum1(), getNum2()};
+        // Variable
         int size;
+        int total = 0;
+       
+        System.out.println("An array of numbers will be used to calculate the average.");
+        System.out.print("You must account for your 2 numbers, how many additional numbers would you like in the array?: ");
+        size = in.nextInt();
         
-        System.out.print("An array of numbers will be used to calculate the average.");
+        int []myArray = new int [size];
+        myArray[0] = getNum1();
+        myArray[1] = getNum2();
+        
+        // Iteration
+        for(int i = 2; i < size; i++)
+        {
+            System.out.print("Enter a number in index " + (i + 1) + " : ");
+            myArray[i] = in.nextInt();
+        }
+        
+        System.out.print("Your numbers are: ");
+        for(int i = 0; i < myArray.length; i++)
+        {
+            System.out.print(myArray[i] + ", ");
+        }
         
         // Calculations
         
