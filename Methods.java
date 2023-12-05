@@ -123,7 +123,6 @@ public class Methods
 
                 case 2: // Subtraction
                     calcSubtraction();
-                    
                     break;
 
                 case 3: // Multiplication
@@ -131,18 +130,28 @@ public class Methods
                     break;
 
                 case 4: // Division
+                    calcDivision();
                     break;
                     
-                case 6:
+                case 5: // Average
+                    calcAverage();
+                    break;
+                    
+                case 6: // Initialize new numbers
+                    setNum1(num1);
+                    setNum2(num2);
+                    displayMenu(); 
+                    break;
+                    
+                case 7:
                     System.out.println("Thank you for using my program. Goodbye!");
                     in.close();
                     break;
-
+                   
                 default:
                     displayErrorMessage();
-
             } // end switch
-        }while(userInput != 6);
+        }while(userInput != 7);
     } // end createMenu method
     
     
@@ -152,6 +161,10 @@ public class Methods
         System.out.println("[1]. Addition");
         System.out.println("[2]. Subtraction");
         System.out.println("[3]. Multiplication");
+        System.out.println("[4]. Division");
+        System.out.println("[5]. Average");
+        System.out.println("[6]. Input new numbers");
+        System.out.println("[7]. Exit program");
     } // end displayMenu method
     
     public void displayErrorMessage()
@@ -195,6 +208,50 @@ public class Methods
         System.out.println("THe product is: " + total);
     } // end calcMultiplication method
     
+    
+    public void calcDivision()
+    {
+        // Variables
+        int total = 0;
+        int remainder = 0;
+        boolean isZero = true;
+        
+        do
+        {
+            // Validation
+            try
+            {
+                // Calculation
+                total = getNum1() / getNum2();
+                remainder = getNum1() % getNum2(); 
+                isZero = false;
+            }
+            catch(ArithmeticException e)
+            {
+                System.out.println("Cannot divide by zero.");
+                System.out.println("Please enter a number greater than zero for the denominator.");
+                num2 = in.nextInt();
+                isZero = true;
+            }
+        }while(isZero);
+        
+        // Output
+        System.out.println("The quotient is: " + total + "." + remainder);
+    } // end calcDivision method
+    
+    public void calcAverage()
+    {
+        // Variables
+        int myArray[] = {getNum1(), getNum2()};
+        int size;
+        
+        System.out.print("An array of numbers will be used to calculate the average.");
+        
+        // Calculations
+        
+        // Output
+    
+    } // end calcAverage method
     
     
 } // end Methods Class
