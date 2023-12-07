@@ -154,7 +154,6 @@ public class Methods
         }while(userInput != 7);
     } // end createMenu method
     
-    
     public void displayMenu()
     {
         System.out.println("**Calculator Menu**");
@@ -244,6 +243,8 @@ public class Methods
         // Variable
         int size;
         int total = 0;
+        double average = 0;
+        boolean badInput = true;
        
         System.out.println("An array of numbers will be used to calculate the average.");
         System.out.print("You must account for your 2 numbers, how many additional numbers would you like in the array?: ");
@@ -253,23 +254,36 @@ public class Methods
         myArray[0] = getNum1();
         myArray[1] = getNum2();
         
-        // Iteration
-        for(int i = 2; i < size; i++)
+        // Validation
+        do
         {
-            System.out.print("Enter a number in index " + (i + 1) + " : ");
-            myArray[i] = in.nextInt();
-        }
+            try
+            {
+                // Iteration
+                for(int i = 2; i < size; i++)
+                {
+                    System.out.print("Enter a number in index " + (i + 1) + " : ");
+                    myArray[i] = in.nextInt();
+                    badInput = false;
+                }
+            }
+            catch(InputMismatchException e)
+            {
+                System.out.println("Invalid input. Must me an integer: ");
+                badInput = true;
+                in.nextLine();
+            }
+        }while(badInput);
         
-        System.out.print("Your numbers are: ");
+         // Calculations
         for(int i = 0; i < myArray.length; i++)
         {
-            System.out.print(myArray[i] + ", ");
+            total += myArray[i];
         }
-        
-        // Calculations
+        average = total / myArray.length;
         
         // Output
-    
+        System.out.println("The average is: " + average);
     } // end calcAverage method
     
     
